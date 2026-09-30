@@ -70,9 +70,13 @@ A populated output directory is never overwritten. CSV files can be opened in Ex
 
 The certainty categories are not calibrated probabilities. No duplicate automatic masters is a software invariant, not evidence that the retained mapping is correct. An incorrect unique mapping remains possible.
 
+Component detection is deliberately limited in this evaluated version: some single-digit target suffixes trigger abstention, but variants such as `PTV_10`, `PTV_01`, `CardTV_1` or `PTV1.1` are not reliably caught. Review target components explicitly; do not assume that every numbered contour was filtered. Extending these rules requires a versioned re-evaluation, not retroactively changing a frozen result.
+
 ## Evaluation and manuscript
 
 The current study evaluation is a **retrospective reference-withheld replay**, not a prospective or externally validated clinical system. A frozen prompt, model digest, vocabulary, parameters, input list and reference hash are recorded before inference. Prior aliases and finalized mappings are not supplied to the model. Predictions are frozen before scoring against the final curation.
+
+For the 30 September 2026 replay, assignment checks were amended after a code audit while inference was running, then frozen before the recorded reference comparison. This chronology is documented and is not preregistration of the full scoring implementation. The evaluator and clinical reference remain in the controlled study workspace.
 
 Report these separately:
 
