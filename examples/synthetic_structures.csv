@@ -1,0 +1,13 @@
+Case,ROI_ID,StructureName,Volume_cc,SourceGroup
+DEMO_A,1,Heart,500,Synthetic
+DEMO_A,2,Lung Left,1600,Synthetic
+DEMO_A,3,Lung Right,1800,Synthetic
+DEMO_A,4,PTV,60,Synthetic
+DEMO_A,5,CTV,35,Synthetic
+DEMO_A,6,Heart_ring,550,Synthetic
+DEMO_A,7,LAD,2,Synthetic
+DEMO_A,8,Unknown_123,12,Synthetic
+DEMO_B,1,Left Atrium,80,Synthetic
+DEMO_B,2,Lung_L,1500,Synthetic
+DEMO_B,3,Lung_Left,1550,Synthetic
+DEMO_B,4,ITV,55,Synthetic

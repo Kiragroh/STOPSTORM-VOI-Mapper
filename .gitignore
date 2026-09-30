@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+results/
+private/
+cache/
+*.dcm
+*.xlsx
+*.zip
+*.log
+*.egg-info/
+build/
+dist/
+docs/*.visual-check.*
