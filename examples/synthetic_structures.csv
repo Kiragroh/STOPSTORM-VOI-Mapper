@@ -11,3 +11,7 @@ DEMO_B,1,Left Atrium,80,Synthetic
 DEMO_B,2,Lung_L,1500,Synthetic
 DEMO_B,3,Lung_Left,1550,Synthetic
 DEMO_B,4,ITV,55,Synthetic
+DEMO_B,5,V_Venacava,15,Synthetic
+DEMO_B,6,RIVA,2,Synthetic
+DEMO_B,7,PTV_crop,40,Synthetic
+DEMO_B,8,Skin,0,Synthetic

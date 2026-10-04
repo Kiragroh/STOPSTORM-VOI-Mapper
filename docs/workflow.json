@@ -13,12 +13,12 @@
     {"id": "input", "lane": "source", "col": 0, "width": 170, "type": "database", "label": "Structure names", "sublabel": "CSV or RTSTRUCT"},
     {"id": "names", "lane": "source", "col": 1, "width": 170, "type": "backend", "label": "Unique names", "sublabel": "No reference labels"},
     {"id": "model", "lane": "local", "col": 1, "type": "backend", "label": "Local LLM", "sublabel": "Fixed vocabulary"},
-    {"id": "guard", "lane": "local", "col": 2, "width": 170, "type": "security", "label": "Assignment checks", "sublabel": "Sides and duplicates"},
+    {"id": "guard", "lane": "local", "col": 2, "width": 170, "type": "security", "label": "Assignment checks", "sublabel": "Subsets, sides, extras"},
     {"id": "review", "lane": "human", "col": 2, "width": 170, "type": "frontend", "label": "Review proposals", "sublabel": "Conflicts stay open"},
     {"id": "export", "lane": "human", "col": 3, "type": "database", "label": "Review export", "sublabel": "Mappings and gaps"},
     {"id": "freeze", "lane": "test", "col": 3, "width": 170, "type": "security", "label": "Freeze predictions", "sublabel": "Before evaluation"},
     {"id": "reference", "lane": "test", "col": 4, "width": 170, "type": "database", "label": "Hidden reference", "sublabel": "Final human curation"},
-    {"id": "score", "lane": "test", "col": 5, "width": 170, "type": "backend", "label": "Measure agreement", "sublabel": "Precision and coverage"}
+    {"id": "score", "lane": "test", "col": 5, "width": 170, "type": "backend", "label": "Count each master once", "sublabel": "Ready, switch, manual"}
   ],
   "edges": [
     {"from": "input", "to": "names"},

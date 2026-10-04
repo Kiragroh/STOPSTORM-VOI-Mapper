@@ -6,6 +6,7 @@ ROOT = Path(__file__).resolve().parent
 MASTERS = json.loads((ROOT/'vocabulary.json').read_text(encoding='utf-8'))
 PROMPT = (ROOT/'prompt.txt').read_text(encoding='utf-8')
 OPTIONS = {'num_ctx':8192, 'num_predict':1800, 'temperature':0, 'seed':20260930}
+EXTRA_VENA_CAVA = 'Vena cava (unspecified)'
 
 def normalize(name):
     return re.sub(r'[^a-z0-9]', '', name.lower())
@@ -38,16 +39,41 @@ def exact_proposals(rows):
     vocabulary={normalize(m):m for m in MASTERS}
     return {r['name']:(vocabulary.get(normalize(r['name']),'x'),2 if normalize(r['name']) in vocabulary else 0) for r in rows}
 
+def name_policy(name, master, certainty):
+    """Versioned safeguards, not case-specific reference lookups."""
+    norm = normalize(name)
+    if norm == 'riva':
+        return 'H_CA_left anterior descending artery', 2, 'Terminology rule: RIVA is LAD'
+    if norm in {'venacava', 'vvenacava'}:
+        return 'x', 0, 'Extra: unspecified vena cava'
+    if re.search(r'crop|(?:^|[_ .-])(?:partial|prv)(?:$|[_ .-])', name, re.I):
+        return 'x', 0, 'Partial or planning-risk contour requires review'
+    if master == 'ICD' and re.search(r'electrod|elektrod|cable|kabel|(?:^|[_ .-])lead(?:$|[_ .-])', name, re.I):
+        return 'x', 0, 'Device lead is not the generator'
+    if master in {'CardTV', 'Target_ITV', 'Target_PTV'} and re.search(
+            r'(?<![a-z])(?:cardtv|gtv|ctv|itv|ptv|tv)[_ -]*\d{1,3}(?:[.]\d+)?(?=$|[_ -])', name, re.I):
+        return 'x', 0, 'Numbered target component'
+    return master, certainty, None
+
 def enforce_unique(rows,proposals):
     """Do not infer anatomy from volume or use any reference assignments."""
     result=[]; candidates=defaultdict(list)
     for r in rows:
         master,certainty=proposals.get(r['name'],('x',0))
         if master not in MASTERS and master!='x':raise ValueError('Unknown proposed master')
-        item={**r,'llm_master':master,'certainty':certainty,'automatic_master':'x','reason':'No name match'}
+        item={**r,'llm_master':master,'certainty':certainty,'automatic_master':'x','extra_structure':'','reason':'No name match'}
+        volume = r.get('volume_cc')
+        if volume is not None and volume != '' and (not math.isfinite(float(volume)) or float(volume) <= 0):
+            item['reason'] = 'Non-positive or invalid recorded volume'
+            result.append(item)
+            continue
+        master, certainty, policy = name_policy(r['name'], master, certainty)
+        if policy:
+            item['reason'] = policy
+        if policy == 'Extra: unspecified vena cava':
+            item['extra_structure'] = EXTRA_VENA_CAVA
         if master!='x':
-            if master in {'CardTV','Target_ITV','Target_PTV'} and re.search(r'(?<![a-z])(?:gtv|ctv|itv|ptv|tv)[_ -]*[1-9](?=$|[_ -])',r['name'],re.I):item['reason']='Numbered target component'
-            elif certainty!=2:item['reason']='Uncertain name'
+            if certainty!=2:item['reason']='Uncertain name'
             elif laterality_conflict(r['name'],master):item['reason']='Laterality conflict'
             else:
                 item['reason']='Duplicate candidates'
@@ -57,7 +83,10 @@ def enforce_unique(rows,proposals):
         exact=[i for i in indices if normalize(result[i]['name'])==normalize(master)]
         chosen=indices[0] if len(indices)==1 else exact[0] if len(exact)==1 else None
         if chosen is not None:
-            result[chosen].update(automatic_master=master,reason='Single candidate' if len(indices)==1 else 'Sole exact-name candidate')
+            reason = 'Single candidate' if len(indices)==1 else 'Sole exact-name candidate'
+            if normalize(result[chosen]['name']) == 'riva':
+                reason += '; terminology rule: RIVA is LAD'
+            result[chosen].update(automatic_master=master,reason=reason)
     used=[(r['case'],r['automatic_master']) for r in result if r['automatic_master']!='x']
     assert len(used)==len(set(used)), 'Duplicate master assignment'
     assert len({r['key'] for r in result})==len(result), 'Duplicate ROI key'
