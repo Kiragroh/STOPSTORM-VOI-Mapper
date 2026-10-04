@@ -44,6 +44,11 @@ class CoreTests(unittest.TestCase):
         for n in ['PTV_10','PTV_01','CardTV_1','PTV1.1']:
             r=enforce_unique(rows(n),{n:('Target_PTV',2)})
             self.assertEqual(r[0]['reason'],'Numbered target component')
+    def test_plural_device_leads_are_not_generator(self):
+        for name in ['ICD_leads','ICD leads','ICD lead','device.leads']:
+            result=enforce_unique(rows(name),{name:('ICD',2)})
+            self.assertEqual(result[0]['automatic_master'],'x')
+            self.assertEqual(result[0]['reason'],'Device lead is not the generator')
     def test_zero_volume_excluded_unknown_kept(self):
         r=rows('Heart','Lung Left');r[0]['volume_cc']=0;r[1]['volume_cc']=None
         out=enforce_unique(r,{'Heart':('Heart',2),'Lung Left':('Lung Left',2)})

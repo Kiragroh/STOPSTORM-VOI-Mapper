@@ -73,6 +73,8 @@ The certainty categories are not calibrated probabilities. No duplicate automati
 
 Version 0.2.0 expands the earlier single-digit component check to forms such as `PTV_10`, `PTV_01`, `CardTV_1` and `PTV1.1`. These names remain for human review rather than being interpreted automatically as a whole target. Naming patterns cannot establish completeness; review all target definitions. The previous implementation and replay remain frozen in the study record and in repository history.
 
+Version 0.2.1 also rejects plural device-lead labels such as `ICD_leads` as generator contours. This closes a naming-pattern gap; it does not replace anatomical review.
+
 ## Evaluation and manuscript
 
 The current study evaluation is a **retrospective reference-withheld replay**, not a prospective or externally validated clinical system. A frozen prompt, model digest, vocabulary, parameters, input list and reference hash are recorded before inference. Prior aliases and finalized mappings are not supplied to the model. Predictions are frozen before scoring against the final curation.

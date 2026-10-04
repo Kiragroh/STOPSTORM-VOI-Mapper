@@ -48,7 +48,7 @@ def name_policy(name, master, certainty):
         return 'x', 0, 'Extra: unspecified vena cava'
     if re.search(r'crop|(?:^|[_ .-])(?:partial|prv)(?:$|[_ .-])', name, re.I):
         return 'x', 0, 'Partial or planning-risk contour requires review'
-    if master == 'ICD' and re.search(r'electrod|elektrod|cable|kabel|(?:^|[_ .-])lead(?:$|[_ .-])', name, re.I):
+    if master == 'ICD' and re.search(r'electrod|elektrod|cable|kabel|(?:^|[_ .-])leads?(?:$|[_ .-])', name, re.I):
         return 'x', 0, 'Device lead is not the generator'
     if master in {'CardTV', 'Target_ITV', 'Target_PTV'} and re.search(
             r'(?<![a-z])(?:cardtv|gtv|ctv|itv|ptv|tv)[_ -]*\d{1,3}(?:[.]\d+)?(?=$|[_ -])', name, re.I):
