@@ -4,6 +4,32 @@
 
 Local name-matching assistance for radiotherapy research. The tool proposes mappings to a 40-VOI vocabulary, checks laterality and duplicate assignments, and leaves uncertain or conflicting structures open for review. It never modifies DICOM objects or approves a clinical plan.
 
+## Try the local GUI
+
+Enter a name, choose **STOPSTORM** or **AAPM TG-263**, and inspect ranked candidates
+with explicit score meanings. Use single-name lookup or case-aware batch review
+with CSV import/export. Live indicators distinguish Ollama connectivity, installed
+and loaded models, and observed GPU availability/use.
+
+![Local name tester with synthetic input and observed hardware status](docs/gui-tester.png)
+
+From the cloned repository, in your Python environment:
+
+```bash
+python -m pip install -e ".[gui]"
+voi-mapper-gui --install-tg263
+```
+
+This opens a **local** browser app. The TG-263 setup explicitly imports the pinned
+official worksheet; no model is downloaded. Name similarity works immediately
+without a GPU. Select **Local LLM** to use an installed Ollama model.
+
+**[Setup, Ollama connection, batch workflow and score interpretation](docs/gui.md)**
+
+The GUI is an exploratory software extension, separate from the original
+evaluated CLI workflow. Scores are not calibrated probabilities; proposals
+still require human review. No study results are disclosed by the screenshots.
+
 ## From heterogeneous names to a reviewable dataset
 
 Developed alongside the curation of STOPSTORM radiotherapy DICOM data, this workflow addresses a practical problem: the same volume of interest (VOI) can arrive with different spellings, abbreviations and languages, while similar names can describe different structures.
@@ -99,7 +125,7 @@ On a shared GPU, route model traffic through your installed local coordinator us
 
 ## Referencing this software
 
-Use GitHub's **Cite this repository** entry or [CITATION.cff](CITATION.cff), and record the version and commit used for an analysis. The mapping implementation remains version 0.2.1; these documentation changes do not change its behaviour. A manuscript citation can be added once the associated article has a public bibliographic record. No article DOI or publication status is implied here.
+Use GitHub's **Cite this repository** entry or [CITATION.cff](CITATION.cff), and record the version and commit used for an analysis. Version 0.3.0 adds the exploratory GUI without changing the original CLI mapping core, prompt or 40-name vocabulary. The CLI receipt now records the installed package version. For the evaluated research configuration, use the frozen commit documented in [evaluation.md](docs/evaluation.md), not the GUI ranker. A manuscript citation can be added once the associated article has a public bibliographic record. No article DOI or publication status is implied here.
 
 ## Limits
 

@@ -61,7 +61,8 @@ def main():
         proposals,metadata=predict_names([r['name'] for r in rows],args.model,args.output/'cache',args.endpoint)
     else:proposals=exact_proposals(rows)
     result=enforce_unique(rows,proposals);export_review(args.output,result)
-    receipt={'created_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'version':'0.2.0','mode':args.mode,'model':metadata,'options':OPTIONS,
+    from . import __version__
+    receipt={'created_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),'version':__version__,'mode':args.mode,'model':metadata,'options':OPTIONS,
         'input_sha256':hashlib.sha256(args.input.read_bytes()).hexdigest(),'prompt_sha256':hashlib.sha256(PROMPT.encode()).hexdigest(),
         'rows':len(rows),'cases':len({r['case'] for r in rows}),'automatic_proposals':sum(r['automatic_master']!='x' for r in result),
         'code_sha256':hashlib.sha256(Path(__file__).with_name('core.py').read_bytes()).hexdigest(),

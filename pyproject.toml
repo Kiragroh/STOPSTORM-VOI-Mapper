@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stopstorm-voi-mapper"
-version = "0.2.1"
+version = "0.3.0"
 description = "Local LLM-assisted VOI name proposals with one-to-one assignment checks and human review"
 requires-python = ">=3.10"
 license = "MIT"
@@ -12,9 +12,16 @@ readme = "README.md"
 
 [project.scripts]
 voi-mapper = "voi_mapper.__main__:main"
+voi-mapper-gui = "voi_mapper.gui:main"
+
+[project.optional-dependencies]
+gui = ["xlrd>=2.0.1,<3"]
 
 [tool.setuptools.package-data]
-voi_mapper = ["prompt.txt", "vocabulary.json"]
+voi_mapper = ["prompt.txt", "vocabulary.json", "static/*"]
+
+[tool.setuptools]
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "docs/LUCIDE_LICENSE.txt"]
 
 [tool.setuptools.packages.find]
 include = ["voi_mapper*"]

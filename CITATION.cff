@@ -4,7 +4,7 @@ type: software
 title: STOPSTORM VOI Mapper
 authors:
   - name: STOPSTORM VOI Mapper contributors
-version: 0.2.1
+version: 0.3.0
 repository-code: "https://github.com/Kiragroh/STOPSTORM-VOI-Mapper"
 url: "https://github.com/Kiragroh/STOPSTORM-VOI-Mapper"
 license: MIT

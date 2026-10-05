@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>STOPSTORM | VOI Mapper</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script defer src="/app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="VOI Mapper home"
+        ><svg class="brandicon"><use href="/icons.svg#layers"></use></svg
+        ><span
+          ><strong>STOPSTORM</strong
+          ><span class="brand-sub">VOI Mapper</span></span
+        ></a
+      >
+      <div class="topmeta">
+        <span class="local-label"
+          ><svg><use href="/icons.svg#lock"></use></svg>Local workspace</span
+        ><a
+          href="https://github.com/Kiragroh/STOPSTORM-VOI-Mapper"
+          target="_blank"
+          rel="noreferrer"
+          title="Open repository"
+          aria-label="Open repository"
+          ><svg><use href="/icons.svg#github"></use></svg
+        ></a>
+      </div>
+    </header>
+    <div class="statusbar" aria-label="Connection status">
+      <span id="ollamaStatus" class="status"><i></i>Ollama: checking</span
+      ><span id="modelStatus" class="status"><i></i>Model: checking</span
+      ><span id="gpuStatus" class="status"><i></i>GPU: checking</span
+      ><button
+        id="refreshStatus"
+        class="icon-button"
+        title="Refresh status"
+        aria-label="Refresh status"
+      >
+        <svg><use href="/icons.svg#refresh-cw"></use></svg></button
+      ><span id="endpoint" class="endpoint"></span>
+    </div>
+    <main>
+      <div class="heading">
+        <div>
+          <p class="eyebrow">STRUCTURE NOMENCLATURE</p>
+          <h1>Name matcher</h1>
+        </div>
+        <span class="review-label"
+          ><svg><use href="/icons.svg#user-check"></use></svg>Human review
+          required</span
+        >
+      </div>
+      <nav class="tabs" aria-label="Input mode">
+        <button id="singleTab" aria-pressed="true">
+          <svg><use href="/icons.svg#search"></use></svg>Single name</button
+        ><button id="batchTab" aria-pressed="false">
+          <svg><use href="/icons.svg#list"></use></svg>Batch review
+        </button>
+      </nav>
+      <div class="workspace">
+        <section class="inputs" aria-label="Input settings">
+          <div class="section-label">
+            <span>01</span>
+            <h2>Source name</h2>
+            <button id="example" class="text-button">Load example</button>
+          </div>
+          <label class="sr-only" for="singleName">Structure name</label
+          ><input
+            id="singleName"
+            class="name-input"
+            placeholder="e.g. Lunge links"
+            maxlength="256"
+            autocomplete="off"
+          />
+          <div id="batchInput" hidden>
+            <label class="sr-only" for="batchNames"
+              >Structure names or CSV</label
+            ><textarea
+              id="batchNames"
+              rows="7"
+              placeholder="Heart&#10;Lunge links&#10;RIVA"
+              spellcheck="false"
+            ></textarea>
+            <div class="batch-tools">
+              <label class="file-button" for="csvFile"
+                ><svg><use href="/icons.svg#upload"></use></svg>Import CSV<input
+                  type="file"
+                  id="csvFile"
+                  accept=".csv,text/csv"
+                  hidden /></label
+              ><label class="checkbox"
+                ><input type="checkbox" id="csvMode" />CSV headers</label
+              >
+            </div>
+            <label for="caseName"
+              >Case group <span class="optional">optional</span></label
+            ><input
+              id="caseName"
+              maxlength="256"
+              placeholder="Independent names when empty"
+            />
+          </div>
+          <div class="section-label settings-label">
+            <span>02</span>
+            <h2>Match against</h2>
+          </div>
+          <label for="vocabulary">Vocabulary</label
+          ><select id="vocabulary">
+            <option value="stopstorm">STOPSTORM · 40 names</option>
+          </select>
+          <p id="catalogueNote" class="field-note"></p>
+          <label for="engine">Ranking engine</label
+          ><select id="engine">
+            <option value="lexical">Name similarity · no model needed</option>
+            <option value="llm">Local LLM · shortlist reranking</option>
+          </select>
+          <div id="modelField">
+            <label for="model">Ollama model</label
+            ><select id="model">
+              <option value="">No installed models detected</option>
+            </select>
+          </div>
+          <div class="runbar">
+            <button id="run" class="primary">
+              <svg><use href="/icons.svg#arrow-right"></use></svg
+              ><span>Find candidates</span></button
+            ><button
+              id="cancel"
+              class="icon-button"
+              hidden
+              title="Stop batch"
+              aria-label="Stop batch"
+            >
+              <svg><use href="/icons.svg#square"></use></svg>
+            </button>
+          </div>
+          <div id="progressArea" hidden>
+            <progress id="progress" max="1" value="0"></progress>
+            <div id="progressText" role="status" aria-live="polite"></div>
+          </div>
+          <div id="error" class="error" role="alert" hidden></div>
+          <details class="connection">
+            <summary>Connection &amp; score details</summary>
+            <p id="connectionText"></p>
+            <p>
+              Similarity: exact name 100, documented alias 95, otherwise
+              character similarity scaled to 0–85. LLM: model-rated relevance
+              within a 40-name shortlist. Neither score is a probability.
+            </p>
+            <p>
+              GPU detection does not guarantee capacity. “On GPU” requires
+              observed model VRAM use; other GPU backends may remain unverified.
+            </p>
+            <p>
+              No DICOM changes. Names can contain identifiers; inspect inputs
+              before sharing exports.
+            </p>
+          </details>
+        </section>
+        <section class="results" aria-label="Results">
+          <div class="section-label">
+            <span>03</span>
+            <h2 id="resultTitle">Candidate ranking</h2>
+            <button
+              id="export"
+              class="icon-button"
+              disabled
+              title="Export ranked candidates as CSV"
+              aria-label="Export ranked candidates as CSV"
+            >
+              <svg><use href="/icons.svg#download"></use></svg>
+            </button>
+          </div>
+          <div id="resultMeta" class="result-meta">No query yet</div>
+          <div id="empty" class="empty">
+            <svg><use href="/icons.svg#scan-line"></use></svg>
+            <h3>No candidates yet</h3>
+            <p>STOPSTORM / AAPM TG-263</p>
+          </div>
+          <div id="summary" class="summary" hidden></div>
+          <div id="batchTable" class="table-wrap" hidden></div>
+          <div id="candidateArea" hidden>
+            <div class="selected-name">
+              <span>ORIGINAL NAME</span><strong id="selectedName"></strong
+              ><span id="selectedState"></span>
+            </div>
+            <div class="rank-header">
+              <span>RANK / CANDIDATE</span
+              ><span id="scoreLabel">SIMILARITY / 100</span>
+            </div>
+            <ol id="candidates" class="candidate-list"></ol>
+            <p id="rowNote" class="row-note"></p>
+          </div>
+          <footer class="result-footer">
+            <svg><use href="/icons.svg#shield-check"></use></svg
+            ><span
+              >Local processing. Reviewable proposals. Original names
+              preserved.</span
+            >
+          </footer>
+        </section>
+      </div>
+      <footer class="page-footer">
+        <span>Research software · Not for clinical decision-making</span
+        ><span id="catalogueFooter">STOPSTORM vocabulary</span>
+      </footer>
+    </main>
+  </body>
+</html>
