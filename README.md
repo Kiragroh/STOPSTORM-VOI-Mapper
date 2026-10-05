@@ -4,6 +4,18 @@
 
 Local name-matching assistance for radiotherapy research. The tool proposes mappings to a 40-VOI vocabulary, checks laterality and duplicate assignments, and leaves uncertain or conflicting structures open for review. It never modifies DICOM objects or approves a clinical plan.
 
+## From heterogeneous names to a reviewable dataset
+
+Developed alongside the curation of STOPSTORM radiotherapy DICOM data, this workflow addresses a practical problem: the same volume of interest (VOI) can arrive with different spellings, abbreviations and languages, while similar names can describe different structures.
+
+![Synthetic examples of source-name variation, candidate master names and review boundaries](docs/naming-variation.png)
+
+*Illustrative examples, not patient labels or study results. Arrows show possible terminology relationships for review, not guaranteed automatic assignments. [Vector figure](docs/naming-variation.svg) and [complete 40-VOI catalogue](docs/vocabulary.md).*
+
+The practical benefits are a consistent vocabulary for downstream analysis, pre-filled proposals for reviewers, explicit duplicate and laterality checks, and separate lists of missing or unresolved structures. Original names remain visible beside the proposed master names. These features make heterogeneous submissions easier to inspect and organise; they do not establish contour accuracy or a measured reduction in working time.
+
+This repository is a shareable methods and software companion. It does not report unpublished cohort counts, mapping success rates, dosimetric findings or model-comparison results from the manuscript.
+
 ## Quick start
 
 Python 3.10 or later is sufficient for the CSV workflow. Clone this repository and run from its root:
@@ -21,7 +33,7 @@ For local LLM proposals, start Ollama and select a model you have already instal
 python -m voi_mapper --input structures.csv --output results/local_review --mode llm --model YOUR_LOCAL_MODEL_TAG
 ```
 
-No model is downloaded automatically. Only loopback HTTP endpoints are accepted. The tested study configuration uses a locally registered `qwen3.8-ridge-benchmark:3.7bpw` tag. This is a local alias, not a promise that an identically named model is available in the Ollama registry. Model metadata and its digest are recorded with each run. Model weights and their separate licences are not part of this repository. Other Ollama models need their own schema/quality check; quality is not transferable from a model name alone.
+No model is downloaded automatically. Only loopback HTTP endpoints are accepted. The reproducible research configuration uses a **Qwen3.5-family model with 27.3B parameters and IQ2_M quantisation**, registered locally as `qwen3.8-ridge-benchmark:3.7bpw`. The alias does not describe the actual model family and is not a public model download identifier. [Configuration and reproducibility details](docs/evaluation.md) record the checkpoint digest and inference settings. Model weights and their separate licences are not part of this repository.
 
 ## Input and review
 
@@ -75,26 +87,19 @@ Version 0.2.0 expands the earlier single-digit component check to forms such as 
 
 Version 0.2.1 also rejects plural device-lead labels such as `ICD_leads` as generator contours. This closes a naming-pattern gap; it does not replace anatomical review.
 
-## Evaluation and manuscript
+## Research use and further development
 
-The current study evaluation is a **retrospective reference-withheld replay**, not a prospective or externally validated clinical system. A frozen prompt, model digest, vocabulary, parameters, input list and reference hash are recorded before inference. Prior aliases and finalized mappings are not supplied to the model. Predictions are frozen before scoring against the final curation.
+The aim was to make multicentre radiotherapy data manageable for analysis, rather than to optimise or compare language models. Qwen provides the documented local configuration. Other local or contemporary cloud models, with or without task-specific tuning, may improve mapping performance; this is a direction for further work, not a result claimed here. The open-source implementation provides a basis for evaluating these extensions and adapting the workflow to other use cases.
 
-For the 30 September 2026 replay, assignment checks were amended after a code audit while inference was running, then frozen before the recorded reference comparison. This chronology is documented and is not preregistration of the full scoring implementation. The evaluator and clinical reference remain in the controlled study workspace.
+The distributed CLI supports **local Ollama only**. A cloud adapter would be a separate extension, not an existing feature. Even structure names can contain patient identifiers: screen them and follow institutional data-protection requirements before considering external processing. Do not upload DICOM, case identifiers, reference labels or response caches with a cloud request.
 
-In a retrospective multilingual research dataset, the reviewed workflow prepared **more than 75% of the eligible native case/master assignments** in agreement with the final human-reviewed mapping. This is within-dataset development evidence after review-driven rule corrections, not external validation or a measurement of historical editing effort. All proposed mappings still require human review. Clinical data, case identifiers, response caches and fixed study-result tables are not distributed here.
-
-For an actionable evaluation, count each needed case/master once:
-
-- **Ready:** the selected source structure matches the human-reviewed reference for that master.
-- **Switch:** another source structure occupies the needed master, or the reference structure received another master.
-- **Manual:** the needed master and its reference structure remain unassigned; candidate suggestions may still exist.
-- **Extras:** proposals for masters absent from the reference are reported separately, never counted as additional successful matches. An extra `x` row occupying a needed master is one switch, not another match.
-
-Keep the original frozen replay separate from post-review development results. Report assignment-level and whole-case completeness separately. A case with every required slot ready can still have surplus proposals requiring rejection; this does not mean an entirely review-free case.
+For other applications, revise the vocabulary and prompt together, use independent reference annotations, and test the same assignment checks. See [evaluation and reproducibility](docs/evaluation.md) for an assignment-level assessment framework. Published code and synthetic examples support inspection and reuse; study-specific data and results remain in the controlled research workspace.
 
 On a shared GPU, route model traffic through your installed local coordinator using `--endpoint http://127.0.0.1:11436`, rather than bypassing its queue. Queue installation, durable submission, ownership and script/chat attribution are site-specific responsibilities, not provided by this portable package. Do not embed queue tokens in CSV inputs or repository files. The standard standalone Ollama endpoint remains available for independently managed machines.
 
-Do not report total-row accuracy dominated by unassigned structures as the principal result. Do not interpret a replay as historical time saved or the number of edits actually made during original curation. Final source names may already incorporate earlier repairs, and the curated reference can itself need review. The study-specific data and case-level results are deliberately not distributed here.
+## Referencing this software
+
+Use GitHub's **Cite this repository** entry or [CITATION.cff](CITATION.cff), and record the version and commit used for an analysis. The mapping implementation remains version 0.2.1; these documentation changes do not change its behaviour. A manuscript citation can be added once the associated article has a public bibliographic record. No article DOI or publication status is implied here.
 
 ## Limits
 

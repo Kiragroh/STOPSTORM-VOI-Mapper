@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1080pt" height="633.6pt" viewBox="0 0 1080 633.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-10-05T09:29:56.548495</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>STOPSTORM VOI Mapper documentation</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 633.6 
+L 1080 633.6 
+L 1080 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="line2d_1">
+    <path d="M 37.152 135.40032 
+L 1042.848 135.40032 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_2">
+    <path d="M 37.152 204.849216 
+L 1042.848 204.849216 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_3">
+    <path d="M 37.152 274.298112 
+L 1042.848 274.298112 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_4">
+    <path d="M 37.152 343.747008 
+L 1042.848 343.747008 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_5">
+    <path d="M 37.152 413.195904 
+L 1042.848 413.195904 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_6">
+    <path d="M 37.152 482.6448 
+L 1042.848 482.6448 
+" clip-path="url(#p181f095112)" style="fill: none; stroke: #dbe3e8; stroke-linecap: square"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 23px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="37.152" y="45.323126" transform="rotate(-0 37.152 45.323126)">Different names, reviewable VOI assignments</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #69737d" x="37.152" y="67.180608" transform="rotate(-0 37.152 67.180608)">SYNTHETIC EXAMPLES  |  No patient labels, study frequencies or model-performance results</text>
+   </g>
+   <g id="text_3">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="109.587456" transform="rotate(-0 47.52 109.587456)">Illustrative source labels</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="462.24" y="109.587456" transform="rotate(-0 462.24 109.587456)">Candidate master</text>
+   </g>
+   <g id="text_5">
+    <text style="font-weight: 700; font-size: 14px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="783.648" y="109.587456" transform="rotate(-0 783.648 109.587456)">Review boundary</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="161.589443" transform="rotate(-0 47.52 161.589443)">Heart / heart / Herz / Coeur</text>
+   </g>
+   <g id="patch_2">
+    <path d="M 409.291819 158.140224 
+Q 421.80456 158.140224 432.640251 158.140224 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 155.540224 
+L 432.640251 158.140224 
+L 427.440251 160.740224 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_7">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087fa7" x="462.24" y="161.534255" transform="rotate(-0 462.24 161.534255)">Heart</text>
+   </g>
+   <g id="text_8">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 153.782488)">Check the contour,</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 168.844523)">not only its label.</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="230.864511" transform="rotate(-0 47.52 230.864511)">Lung_L / L Lung / Lunge links</text>
+   </g>
+   <g id="patch_3">
+    <path d="M 409.291819 227.58912 
+Q 421.80456 227.58912 432.640251 227.58912 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 224.98912 
+L 432.640251 227.58912 
+L 427.440251 230.18912 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087fa7" x="462.24" y="230.935104" transform="rotate(-0 462.24 230.935104)">Lung Left</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 223.231384)">Keep left and right</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 238.293419)">separate.</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="300.487235" transform="rotate(-0 47.52 300.487235)">LAD / RIVA</text>
+   </g>
+   <g id="patch_4">
+    <path d="M 409.291819 297.038016 
+Q 421.80456 297.038016 432.640251 297.038016 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 294.438016 
+L 432.640251 297.038016 
+L 427.440251 299.638016 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_13">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #087fa7" transform="translate(462.24 292.391691)">H_CA_left anterior</text>
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #087fa7" transform="translate(462.24 308.37631)">descending artery</text>
+   </g>
+   <g id="text_14">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 292.68028)">A coronary subsegment is not</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 307.742315)">the entire named artery.</text>
+   </g>
+   <g id="text_15">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="369.936131" transform="rotate(-0 47.52 369.936131)">TV / CTV / GTV / CardTV</text>
+   </g>
+   <g id="patch_5">
+    <path d="M 409.291819 366.486912 
+Q 421.80456 366.486912 432.640251 366.486912 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 363.886912 
+L 432.640251 366.486912 
+L 427.440251 369.086912 
+" style="fill: none; stroke: #087fa7; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_16">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #087fa7" x="462.24" y="369.880943" transform="rotate(-0 462.24 369.880943)">CardTV</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 362.129176)">STOPSTORM target convention;</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 377.191211)">ITV and PTV remain separate.</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="439.385027" transform="rotate(-0 47.52 439.385027)">Vena cava</text>
+   </g>
+   <g id="patch_6">
+    <path d="M 409.291819 435.935808 
+Q 421.80456 435.935808 432.640251 435.935808 
+" style="fill: none; stroke: #69737d; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 433.335808 
+L 432.640251 435.935808 
+L 427.440251 438.535808 
+" style="fill: none; stroke: #69737d; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_19">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #69737d" transform="translate(462.24 431.508577)">Unspecified vena cava</text>
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #69737d" transform="translate(462.24 447.151102)">(review extra)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 431.578072)">Do not infer superior</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 446.640107)">or inferior.</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 12.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #183244" x="47.52" y="508.660095" transform="rotate(-0 47.52 508.660095)">Heart_PRV / PTV_1 / ICD_lead</text>
+   </g>
+   <g id="patch_7">
+    <path d="M 409.291819 505.384704 
+Q 421.80456 505.384704 432.640251 505.384704 
+" style="fill: none; stroke: #69737d; stroke-width: 1.5; stroke-linecap: round"/>
+    <path d="M 427.440251 502.784704 
+L 432.640251 505.384704 
+L 427.440251 507.984704 
+" style="fill: none; stroke: #69737d; stroke-width: 1.5; stroke-linecap: round"/>
+   </g>
+   <g id="text_22">
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #69737d" transform="translate(462.24 500.909426)">Manual review /</text>
+    <text style="font-weight: 700; font-size: 12.3px; font-family: 'DejaVu Sans'; fill: #69737d" transform="translate(462.24 516.551951)">outside master assignment</text>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 501.026968)">Risk volume, target component</text>
+    <text style="font-size: 11.5px; font-family: 'DejaVu Sans'; fill: #183244" transform="translate(783.648 516.089003)">and device lead are not synonyms.</text>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #69737d" x="37.152" y="593.27136" transform="rotate(-0 37.152 593.27136)">Terminology relationships are proposals for human review, not guaranteed automatic mappings.</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p181f095112">
+   <rect x="21.6" y="6.336" width="1036.8" height="614.592"/>
+  </clipPath>
+ </defs>
+</svg>
