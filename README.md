@@ -42,6 +42,30 @@ The practical benefits are a consistent vocabulary for downstream analysis, pre-
 
 This repository is a shareable methods and software companion. It does not report unpublished cohort counts, mapping success rates, dosimetric findings or model-comparison results from the manuscript.
 
+## Context and rules, not just model size
+
+The central design choice is to give the model a well-defined task: the permitted
+VOI names, radiotherapy terminology and explicit mapping rules. The prompt explains
+target categories, laterality, whole structures versus substructures, and when to
+leave a name unresolved. The GUI additionally supplies documented aliases and
+candidate descriptions. Separate Python checks validate the response and flag
+conflicting sides, restricted contour types and duplicate proposals within a case.
+The model is a helper within this workflow, not the sole decision-maker.
+
+**Qwen is a choice, not a requirement.** Other local instruction models should
+also work if they support the required Ollama API and structured JSON output.
+For the accompanying, not-yet-published study, we selected the documented Qwen
+configuration for its practical balance of speed, useful mapping proposals and
+memory requirements: the quantised model fitted our NVIDIA GeForce RTX 5080.
+That model size is not a minimum requirement; smaller models can be tried, and
+larger or task-tuned models may improve individual mappings.
+
+Our aim was to make the data manageable for human-reviewed analysis. For that
+purpose, we did not identify a practical need to pursue a larger model or
+task-specific fine-tuning. This was a workflow decision, not a controlled comparison
+showing that those approaches offer no benefit. The open implementation makes it
+straightforward to test alternative models with the same vocabulary and rules.
+
 ## Quick start
 
 Python 3.10 or later is sufficient for the CSV workflow. Clone this repository and run from its root:

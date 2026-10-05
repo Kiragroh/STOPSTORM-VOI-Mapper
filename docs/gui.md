@@ -50,6 +50,14 @@ python -m voi_mapper.catalogue --source TG263_Nomenclature_Worksheet_20170815.xl
 4. Start `voi-mapper-gui --endpoint http://127.0.0.1:11434`, choose **Local LLM**
    and an installed model. Enter a name and select **Find candidates**.
 
+Qwen is not mandatory. Other local instruction models should work if they support
+the same API and structured JSON output; compatibility and mapping quality still
+need checking for the selected model. The key is to supply the model with the
+candidate vocabulary, terminology context and explicit mapping rules, then check
+its proposals in code. The larger quantised Qwen configuration used for our
+not-yet-published study was a practical fit for an RTX 5080, not a minimum hardware
+or model-size requirement. See [the model-choice rationale](../README.md#context-and-rules-not-just-model-size).
+
 Only loopback HTTP endpoints are accepted. Remote Ollama servers and cloud model
 entries are not supported. Entries reported as remote by Ollama or using cloud
 tags are excluded. Direct Ollama connections also check `/api/show`; the shared

@@ -38,4 +38,27 @@ Name agreement is not anatomical validation. A retrospective replay does not mea
 
 ## Adaptation
 
-The study workflow was a data-curation aid, not a model-optimisation study. Alternative local or cloud models and task-specific tuning are possible research directions. Assess them on held-out data, preserve case-level grouping, document privacy controls, and test laterality, partial contours and duplicate prevention before use. The current CLI remains local-only; no cloud adapter is bundled.
+For the accompanying, not-yet-published study, Qwen was a pragmatic choice: the
+documented quantised configuration combined useful mapping proposals and practical
+inference speed with a memory footprint that fitted an NVIDIA GeForce RTX 5080.
+The objective was data curation with human review, not model optimisation. We did
+not identify a practical need to pursue a larger model or task-specific fine-tuning
+for this workflow; this is not evidence from a controlled model comparison.
+
+The approach relies on task context and explicit rules in the prompt, alongside
+deterministic validation outside the model. The original prompt provides the full
+40-name vocabulary, defines target categories, distinguishes whole structures from
+substructures, preserves laterality and instructs the model to abstain when a name
+is insufficient. The GUI uses a separate shortlist prompt with aliases and
+descriptions. Case-level duplicate checks are implemented in Python, not entrusted
+to the prompt alone. Neither workflow supplies patient anatomy or reference
+assignments to inference.
+
+Other local instruction models supporting the required Ollama API and structured
+JSON output should be usable; Qwen and its parameter count are not requirements.
+Smaller models may suffice, while larger models or task-specific tuning may improve
+performance. Alternative local or cloud models remain research directions, not
+comparisons reported here. Assess changes on held-out data, preserve case-level
+grouping, document privacy controls, and test laterality, partial contours and
+duplicate prevention. The current software remains local-only; no cloud adapter
+is bundled.
