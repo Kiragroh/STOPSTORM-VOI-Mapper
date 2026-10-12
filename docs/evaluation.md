@@ -1,6 +1,6 @@
 # Evaluation and reproducibility
 
-This page describes a reusable assessment method and the documented local configuration. It deliberately contains no unpublished STOPSTORM cohort results.
+This page describes a reusable assessment method and the documented local configuration. Full-cohort manuscript results are not reported here. A separate [Swift development pilot](model-experiments.md) illustrates the quality/runtime trade-off when varying the model and reasoning settings.
 
 ## Documented local configuration
 
@@ -57,8 +57,9 @@ assignments to inference.
 Other local instruction models supporting the required Ollama API and structured
 JSON output should be usable; Qwen and its parameter count are not requirements.
 Smaller models may suffice, while larger models or task-specific tuning may improve
-performance. Alternative local or cloud models remain research directions, not
-comparisons reported here. Assess changes on held-out data, preserve case-level
+performance. The [Swift pilot](model-experiments.md) provides one bounded local
+comparison; alternative models and additional prompt context remain open to
+further evaluation. Assess changes on held-out data, preserve case-level
 grouping, document privacy controls, and test laterality, partial contours and
 duplicate prevention. The current software remains local-only; no cloud adapter
 is bundled.

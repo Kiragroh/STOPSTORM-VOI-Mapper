@@ -40,7 +40,10 @@ Developed alongside the curation of STOPSTORM radiotherapy DICOM data, this work
 
 The practical benefits are a consistent vocabulary for downstream analysis, pre-filled proposals for reviewers, explicit duplicate and laterality checks, and separate lists of missing or unresolved structures. Original names remain visible beside the proposed master names. These features make heterogeneous submissions easier to inspect and organise; they do not establish contour accuracy or a measured reduction in working time.
 
-This repository is a shareable methods and software companion. It does not report unpublished cohort counts, mapping success rates, dosimetric findings or model-comparison results from the manuscript.
+This repository is a shareable methods and software companion. Full-cohort study
+results and dosimetric findings remain in the manuscript. The separate development
+pilot below illustrates a model/settings trade-off rather than reporting the
+study's evaluated performance.
 
 ## Context and rules, not just model size
 
@@ -65,6 +68,35 @@ purpose, we did not identify a practical need to pursue a larger model or
 task-specific fine-tuning. This was a workflow decision, not a controlled comparison
 showing that those approaches offer no benefit. The open implementation makes it
 straightforward to test alternative models with the same vocabulary and rules.
+
+### Alternative models and reasoning: Swift pilot
+
+Mapping quality can improve by changing the model, reasoning settings and the
+task-specific context supplied in the prompt. Keep the vocabulary and assignment
+checks explicit, and assess each change against reviewed reference assignments.
+Additional prompting or a larger model does not guarantee a better result.
+
+In a separate **12 October 2026 development pilot**, we compared our documented
+Qwen configuration with
+[Swift-Qwen3.8-27B](https://huggingface.co/ukisai/Swift-Qwen3.8-27b), using its
+[official IQ3_XS GGUF](https://huggingface.co/ukisai/Swift-Qwen3.8-27B-GGUF).
+The pilot used 361 distinct structure names from 12 cases, representing 306
+reviewed case/master assignments. All arms used the same rules/context prompt,
+32-name batches and deterministic assignment checks, with reference labels
+withheld from the model.
+
+| Configuration | Correctly prepared reference assignments | Model processing time |
+|---|---:|---:|
+| Documented Qwen, thinking off | 220/306 (71.9%) | 4.4 min |
+| Swift IQ3_XS, thinking off | 210/306 (68.6%) | 4.6 min |
+| Swift IQ3_XS, thinking low | 245/306 (80.1%) | 12.2 min |
+
+Swift with low reasoning effort prepared 28 additional assignments correctly,
+while three previously correct assignments required review. Precision among
+automatic proposals remained similar (94.6% versus 94.4%), but processing took
+**about 2.8 times longer**. These are pilot observations on our RTX 5080, not a
+universal speed or quality ranking. Changing prompt content was not isolated in
+this comparison. [Protocol, definitions and integration limits](docs/model-experiments.md).
 
 ## Quick start
 
